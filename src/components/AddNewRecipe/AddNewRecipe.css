@@ -1,0 +1,46 @@
+.NewRecipe {
+    /* width: 150%; */
+    margin: auto;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    color: #555;
+
+}
+
+.NewRecipe label {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.RecipeName,
+.Image {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.Add, .Submit {
+    margin: 5px 0;
+    padding: 10px;
+    font: inherit;
+    border: 1px solid #fa923f;
+    background-color: transparent;
+    color: #fa923f;
+    cursor: pointer;
+}
+
+.NewRecipe button:hover,
+.NewRecipe button:active {
+    color: white;
+    background-color: #fa923f;
+}

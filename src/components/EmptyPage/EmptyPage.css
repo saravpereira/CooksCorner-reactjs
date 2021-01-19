@@ -1,0 +1,8 @@
+.Empty {
+    text-align: center;
+    color: #555;
+}
+
+.Empty.instr {
+    font-size: 1.2em;
+}
