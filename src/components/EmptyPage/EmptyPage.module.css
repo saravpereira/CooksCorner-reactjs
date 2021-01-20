@@ -1,8 +1,9 @@
-.Empty {
+.EmptyContainer{
+    padding-top: 18%;
     text-align: center;
     color: #555;
 }
 
-.Empty.instr {
+.EmptyMsg {
     font-size: 1.2em;
 }
