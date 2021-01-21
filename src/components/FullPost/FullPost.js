@@ -1,35 +1,36 @@
 import React, { Component } from "react";
 import Aux from "../../hoc/Aux/Aux";
 import key from "../../data/key";
-import "./FullPost.css";
+import DeleteRecipe from "../ModifyRecipe/DeleteRecipe/DeleteRecipe"
+import classes from "./FullPost.module.css";
 
 class FullPost extends Component {
   render() {
     return (
       <Aux>
-        <h1 className="Post">{this.props.viewingRecipe.name}</h1>
-        <h3 className="Post">Ingredients</h3>
+        <h1 className={classes.Post}>{this.props.viewingRecipe.name}</h1>
+        <h3 className={classes.Post}>Ingredients</h3>
         <ul>
           {this.props.viewingRecipe.ingredients.map((ingredient) => {
             return (
-              <li key={key(10)} className="Post">
+              <li key={key(10)} className={classes.Post}>
                 {ingredient}
-                {/* {ingredient.quantity} {ingredient.name} */}
               </li>
             );
           })}
         </ul>
         <hr />
-        <h3 className="Post">Steps</h3>
+        <h3 className={classes.Post}>Steps</h3>
         <ol>
           {this.props.viewingRecipe.steps.map((step) => {
             return (
-              <li key={key(10)} className="Post">
+              <li key={key(10)} className={classes.Post}>
                 {step}
               </li>
             );
           })}
         </ol>
+        <DeleteRecipe handleDeletePost={this.props.handleDeletePost}/>
       </Aux>
     );
   }

@@ -23,7 +23,7 @@ class RecipeBlog extends Component {
   };
 
   closePostHandler = () => {
-    this.setState({ showPost: false })
+    this.setState({ showPost: false, selectedPostID: null, viewingRecipe: []})
     this.setState({ addNewRecipe: false })
   };
 
@@ -45,6 +45,11 @@ class RecipeBlog extends Component {
     this.setState((prevState) => ({
       posts: prevState.posts.concat([payload]),
     }));
+  }
+
+  handleDeletePost = () => {
+    const newPostList = this.state.posts.filter((post) => post.id !== this.state.selectedPostID);
+    this.setState({ selectedPostID: null, viewingRecipe:[], posts: newPostList, showPost: false})
   }
 
   render() {
@@ -95,7 +100,7 @@ class RecipeBlog extends Component {
           modalClosed={this.closePostHandler}
         >
           {recipeSelected && (
-            <FullPost viewingRecipe={this.state.viewingRecipe[0]} />
+            <FullPost viewingRecipe={this.state.viewingRecipe[0]} handleDeletePost={this.handleDeletePost}/>
           )}
 
         </Modal>

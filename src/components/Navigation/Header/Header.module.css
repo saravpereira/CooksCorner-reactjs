@@ -1,5 +1,5 @@
 .Header {
-  height: 90px;
+  height: 150px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -105,6 +105,7 @@ button:hover .buttonText {
 
 input {
   outline: none;
+  align-items: center;
 }
 
 input[type="search"] {
@@ -154,13 +155,9 @@ input::-webkit-input-placeholder {
 .Logo {
   height: 100%;
   box-sizing: border-box;
+  margin-right: auto;
 }
 
 .Logo img {
   height: 100%;
-  margin-right: 500px;
 }
-
-@media (min-width: 1668px) {
-	.Logo img {display:none}
-  }
