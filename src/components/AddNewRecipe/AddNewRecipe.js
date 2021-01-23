@@ -8,7 +8,6 @@ import ImageUrl from "./ImageUrl/ImageUrl";
 
 class AddNewRecipe extends Component {
   state = {
-    id: key(100),
     ingredientInputs: ["ingredientInputs-0"],
     stepInputs: ["stepInputs-0"],
     name: "",
@@ -73,7 +72,6 @@ class AddNewRecipe extends Component {
 
   handleSubmit() {
     this.props.addPost({
-      id: this.state.id,
       name: this.state.name,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
@@ -120,6 +118,7 @@ class AddNewRecipe extends Component {
         >
           Submit Recipe
         </button>
+        {console.log(this.state)}
       </div>
     );
   }

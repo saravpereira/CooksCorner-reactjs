@@ -1,22 +1,41 @@
 import React, { Component } from "react";
 import Post from "../../components/Post/Post";
-import data from "../../data/data";
 import Aux from "../../hoc/Aux/Aux";
 import Modal from "../../components/UI/Modal/Modal";
 import FullPost from "../../components/FullPost/FullPost";
 import Layout from "../../hoc/Layout/Layout";
 import EmptyPage from "../../components/EmptyPage/EmptyPage";
 import AddNewRecipe from "../../components/AddNewRecipe/AddNewRecipe"
+import axios from "../../axios-posts"
+import Spinner from "../../components/UI/Spinner/Spinner"
 
 class RecipeBlog extends Component {
   state = {
-    posts: [...data],
+    posts: [],
     showPost: false,
     addNewRecipe: false,
     selectedPostID: null,
     viewingRecipe: [],
     search: null,
+    loading: true,
   };
+
+  handleGetPosts () {
+    axios.get("/recipes.json")
+      .then(response => {
+        const updatedPosts = []
+        for(let key in response.data) {
+          const postObject = response.data[key]
+          postObject["id"] = key
+          updatedPosts.push(postObject)
+        }
+        this.setState({posts: updatedPosts, loading: false})
+      })
+  }
+
+  componentDidMount () {
+    this.handleGetPosts()
+  }
 
   showPostHandler = () => {
     this.setState({ showPost: true });
@@ -42,14 +61,19 @@ class RecipeBlog extends Component {
   };
 
   handleAddNewPost = (payload) => {
-    this.setState((prevState) => ({
-      posts: prevState.posts.concat([payload]),
-    }));
+    axios.post('/recipes.json', payload)
+        .then(response => {
+            this.handleGetPosts()
+          })
   }
 
   handleDeletePost = () => {
-    const newPostList = this.state.posts.filter((post) => post.id !== this.state.selectedPostID);
-    this.setState({ selectedPostID: null, viewingRecipe:[], posts: newPostList, showPost: false})
+    axios.delete("/recipes/"+this.state.selectedPostID+".json")
+        .then(response => {
+          this.handleGetPosts()
+          this.setState({ selectedPostID: null, viewingRecipe:[], showPost: false})
+          console.log(this.state.posts)
+        })
   }
 
   render() {
@@ -83,8 +107,8 @@ class RecipeBlog extends Component {
           searchSpace={this.searchSpace}
           addNewRecipe={this.addNewRecipeHandler}
         />
-        {posts}
-        {emptyResult && <EmptyPage />}
+        {this.state.loading ? <Spinner/> : posts}
+        {(emptyResult && this.state.search) && <EmptyPage />}
 
         {this.state.addNewRecipe &&
             <Modal
@@ -102,8 +126,8 @@ class RecipeBlog extends Component {
           {recipeSelected && (
             <FullPost viewingRecipe={this.state.viewingRecipe[0]} handleDeletePost={this.handleDeletePost}/>
           )}
-
         </Modal>
+        {console.log(this.state)}
       </Aux>
     );
   }
