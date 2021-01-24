@@ -1,5 +1,4 @@
 import React from "react";
-import Aux from "../../hoc/Aux/Aux";
 import "./Post.css";
 
 const post = (props) => {
@@ -8,7 +7,7 @@ const post = (props) => {
     props.postID();
   };
   return (
-    <Aux>
+    <React.Fragment>
       <section id="one" className="wrapper style1">
         <div className="inner">
           <article className="feature left">
@@ -27,7 +26,7 @@ const post = (props) => {
           </article>
         </div>
       </section>
-    </Aux>
+    </React.Fragment>
   );
 };
 

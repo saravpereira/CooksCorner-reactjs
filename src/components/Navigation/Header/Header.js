@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import classes from "./Header.module.css";
-import Aux from "../../../hoc/Aux/Aux";
 import Logo from "../Logo/Logo"
 
 class Header extends Component {
   render() {
     return (
-      <Aux>
+      <React.Fragment>
         <header className={classes.Header}>
           <div className={classes.Logo}>
             <Logo />
@@ -32,7 +31,7 @@ class Header extends Component {
             </button>
           
         </header>
-      </Aux>
+      </React.Fragment>
     );
   }
 }

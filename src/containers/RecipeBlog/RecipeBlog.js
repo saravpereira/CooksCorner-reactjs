@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Post from "../../components/Post/Post";
-import Aux from "../../hoc/Aux/Aux";
 import Modal from "../../components/UI/Modal/Modal";
 import FullPost from "../../components/FullPost/FullPost";
 import Layout from "../../hoc/Layout/Layout";
@@ -127,7 +126,7 @@ class RecipeBlog extends Component {
 
     const recipeSelected = this.state.viewingRecipe.length > 0;
     return (
-      <Aux>
+      <React.Fragment>
         <Layout
           searchSpace={this.searchSpace}
           addNewRecipe={this.addNewRecipeHandler}
@@ -163,7 +162,7 @@ class RecipeBlog extends Component {
             />
           )}
         </Modal>
-      </Aux>
+      </React.Fragment>
     );
   }
 }

@@ -1,88 +1,25 @@
 import React, { Component } from "react";
-import classes from "../RecipeFormInputs/RecipeFormInputs.module.css"
+import classes from "../RecipeFormInputs/RecipeFormInputs.module.css";
 import RecipeName from "../RecipeFormInputs/RecipeName/RecipeName";
 import Ingredients from "../RecipeFormInputs/Ingredients/Ingredients";
 import Steps from "../RecipeFormInputs/Steps/Steps";
 import ImageUrl from "../RecipeFormInputs/ImageUrl/ImageUrl";
-import Description from "../RecipeFormInputs/Description/Description"
+import Description from "../RecipeFormInputs/Description/Description";
 import Button from "../UI/Button/Button";
+import withRecipeForm from "../../hoc/RecipeForm/withRecipeForm"
 
 class AddNewRecipe extends Component {
-  state = {
-    ingredientInputs: ["ingredientInputs-0"],
-    stepInputs: ["stepInputs-0"],
-    name: "",
-    description: "",
-    ingredients: [],
-    steps: [],
-    imageURL: "",
-  };
-
-  appendIngredientInput() {
-    var newInput = `ingredientInputs-${this.state.ingredientInputs.length}`;
-    this.setState((prevState) => ({
-      ingredientInputs: prevState.ingredientInputs.concat([newInput]),
-    }));
-  }
-
-  appendStepInput() {
-    var newInput = `stepInputs-${this.state.stepInputs.length}`;
-    this.setState((prevState) => ({
-      stepInputs: prevState.stepInputs.concat([newInput]),
-    }));
-  }
-
-  handleIngredientChange(i, event) {
-    let ingredients = [...this.state.ingredients];
-    ingredients[i] = event.target.value;
-    this.setState({ ingredients });
-  }
-
-  handleStepChange(i, event) {
-    let steps = [...this.state.steps];
-    steps[i] = event.target.value;
-    this.setState({ steps });
-  }
-
-  handleRecipeNameChange(event) {
-    this.setState({ name: event.target.value });
-  }
-
-  handleImageUrlChange(event) {
-    this.setState({ imageURL: event.target.value });
-  }
-
-  handleRecipeDescriptionChange(event) {
-    this.setState({ description: event.target.value });
-  }
-
-  removeIngredient(i) {
-    let ingredients = [...this.state.ingredients];
-    ingredients.splice(i, 1);
-    this.setState({ ingredients });
-
-    let ingredientInputs = [...this.state.ingredientInputs];
-    ingredientInputs.splice(i, 1);
-    this.setState({ ingredientInputs });
-  }
-
-  removeStep(i) {
-    let steps = [...this.state.steps];
-    steps.splice(i, 1);
-    this.setState({ steps });
-
-    let stepInputs = [...this.state.stepInputs];
-    stepInputs.splice(i, 1);
-    this.setState({ stepInputs });
+  componentDidMount() {
+    this.props.initIngredientStepInput()
   }
 
   handleSubmit() {
     this.props.addPost({
-      name: this.state.name,
-      description: this.state.description,
-      ingredients: this.state.ingredients,
-      steps: this.state.steps,
-      imageURL: this.state.imageURL,
+      name: this.props.state.name,
+      description: this.props.state.description,
+      ingredients: this.props.state.ingredients,
+      steps: this.props.state.steps,
+      imageURL: this.props.state.imageURL,
     });
     this.props.closeDialog();
   }
@@ -91,36 +28,38 @@ class AddNewRecipe extends Component {
     return (
       <div className={classes.Recipe}>
         <RecipeName
-          handleRecipeNameChange={(event) => this.handleRecipeNameChange(event)}
-          recipeName={this.state.name}
+          handleRecipeNameChange={(event) => this.props.handleRecipeNameChange(event)}
+          recipeName={this.props.recipeName}
         />
 
-        <Description 
-          handleRecipeDescriptionChange={(event) => this.handleRecipeDescriptionChange(event)}
-          recipeDescription={this.state.description}
+        <Description
+          handleRecipeDescriptionChange={(event) =>
+            this.props.handleRecipeDescriptionChange(event)
+          }
+          recipeDescription={this.props.description}
         />
 
         <Ingredients
-          ingredientInputs={this.state.ingredientInputs}
+          ingredientInputs={this.props.ingredientInputs}
           handleIngredientChange={(i, event) =>
-            this.handleIngredientChange(i, event)
+            this.props.handleIngredientChange(i, event)
           }
-          ingredients={this.state.ingredients}
-          removeIngredient={(i) => this.removeIngredient(i)}
-          appendIngredientInput={() => this.appendIngredientInput()}
+          ingredients={this.props.ingredients}
+          removeIngredient={(i) => this.props.removeIngredient(i)}
+          appendIngredientInput={() => this.props.appendIngredientInput()}
         />
 
         <Steps
-          stepInputs={this.state.stepInputs}
-          steps={this.state.steps}
-          handleStepChange={(i, event) => this.handleStepChange(i, event)}
-          removeStep={(i) => this.removeStep(i)}
-          appendStepInput={() => this.appendStepInput()}
+          stepInputs={this.props.stepInputs}
+          steps={this.props.steps}
+          handleStepChange={(i, event) => this.props.handleStepChange(i, event)}
+          removeStep={(i) => this.props.removeStep(i)}
+          appendStepInput={() => this.props.appendStepInput()}
         />
 
         <ImageUrl
-          imageURL={this.state.imageURL}
-          handleImageUrlChange={(event) => this.handleImageUrlChange(event)}
+          imageURL={this.props.imageURL}
+          handleImageUrlChange={(event) => this.props.handleImageUrlChange(event)}
         />
 
         <Button btnType="Add" clicked={() => this.handleSubmit()}>
@@ -131,4 +70,5 @@ class AddNewRecipe extends Component {
   }
 }
 
-export default AddNewRecipe;
+export default withRecipeForm(AddNewRecipe);
+
