@@ -31,6 +31,7 @@ class FullPost extends Component {
           })}
         </ol>
         <DeleteRecipe handleDeletePost={this.props.handleDeletePost}/>
+        <button onClick={() => this.props.handleEditRecipe()}>Edit Recipe</button>
       </Aux>
     );
   }

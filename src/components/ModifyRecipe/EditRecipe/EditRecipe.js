@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import "./AddNewRecipe.css";
-import RecipeName from "./RecipeName/RecipeName";
-import Ingredients from "./Ingredients/Ingredients";
-import Steps from "./Steps/Steps";
-import ImageUrl from "./ImageUrl/ImageUrl";
+import "../../AddNewRecipe/AddNewRecipe.css";
+import RecipeName from "../../AddNewRecipe/RecipeName/RecipeName";
+import Steps from "../../AddNewRecipe/Steps/Steps";
+import Ingredients from "../../AddNewRecipe/Ingredients/Ingredients";
+import ImageUrl from "../../AddNewRecipe/ImageUrl/ImageUrl";
 
-class AddNewRecipe extends Component {
+class EditRecipe extends Component {
   state = {
-    ingredientInputs: ["ingredientInputs-0"],
-    stepInputs: ["stepInputs-0"],
-    name: "",
-    ingredients: [],
-    steps: [],
-    imageURL: "",
+    ingredientInputs: [...this.props.viewingRecipe.ingredients],
+    stepInputs: [...this.props.viewingRecipe.steps],
+    name: this.props.viewingRecipe.name,
+    ingredients: [...this.props.viewingRecipe.ingredients],
+    steps: [...this.props.viewingRecipe.steps],
+    imageURL: this.props.viewingRecipe.imageURL,
   };
 
   appendIngredientInput() {
@@ -41,14 +41,6 @@ class AddNewRecipe extends Component {
     this.setState({ steps });
   }
 
-  handleRecipeNameChange(event) {
-    this.setState({ name: event.target.value });
-  }
-
-  handleImageUrlChange(event) {
-    this.setState({ imageURL: event.target.value });
-  }
-
   removeIngredient(i) {
     let ingredients = [...this.state.ingredients];
     ingredients.splice(i, 1);
@@ -69,8 +61,16 @@ class AddNewRecipe extends Component {
     this.setState({ stepInputs });
   }
 
-  handleSubmit() {
-    this.props.addPost({
+  handleRecipeNameChange(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  handleImageUrlChange(event) {
+    this.setState({ imageURL: event.target.value });
+  }
+
+  handleUpdate() {
+    this.props.updatePost({
       name: this.state.name,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
@@ -82,6 +82,7 @@ class AddNewRecipe extends Component {
   render() {
     return (
       <div className="NewRecipe">
+        {console.log(this.state)}
         <RecipeName
           handleRecipeNameChange={(event) => this.handleRecipeNameChange(event)}
           recipeName={this.state.name}
@@ -110,15 +111,12 @@ class AddNewRecipe extends Component {
           handleImageUrlChange={(event) => this.handleImageUrlChange(event)}
         />
 
-        <button
-          className="Submit"
-          onClick={() => this.handleSubmit()}
-        >
-          Submit Recipe
+        <button className="Submit" onClick={() => this.handleUpdate()}>
+          Update Recipe
         </button>
       </div>
     );
   }
 }
 
-export default AddNewRecipe;
+export default EditRecipe;
