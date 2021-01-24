@@ -11,7 +11,7 @@ class FullPost extends Component {
         <h1 className={classes.Post}>{this.props.viewingRecipe.name}</h1>
         <h3 className={classes.Post}>Ingredients</h3>
         <ul>
-          {this.props.viewingRecipe.ingredients.map((ingredient) => {
+          {this.props.viewingRecipe.ingredients && this.props.viewingRecipe.ingredients.map((ingredient) => {
             return (
               <li key={key(10)} className={classes.Post}>
                 {ingredient}
@@ -22,7 +22,7 @@ class FullPost extends Component {
         <hr />
         <h3 className={classes.Post}>Steps</h3>
         <ol>
-          {this.props.viewingRecipe.steps.map((step) => {
+          {this.props.viewingRecipe.steps && this.props.viewingRecipe.steps.map((step) => {
             return (
               <li key={key(10)} className={classes.Post}>
                 {step}

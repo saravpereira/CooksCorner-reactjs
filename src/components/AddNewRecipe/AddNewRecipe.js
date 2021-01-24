@@ -4,6 +4,7 @@ import RecipeName from "./RecipeName/RecipeName";
 import Ingredients from "./Ingredients/Ingredients";
 import Steps from "./Steps/Steps";
 import ImageUrl from "./ImageUrl/ImageUrl";
+import Button from "../UI/Button/Button"
 
 class AddNewRecipe extends Component {
   state = {
@@ -110,12 +111,8 @@ class AddNewRecipe extends Component {
           handleImageUrlChange={(event) => this.handleImageUrlChange(event)}
         />
 
-        <button
-          className="Submit"
-          onClick={() => this.handleSubmit()}
-        >
-          Submit Recipe
-        </button>
+        <Button btnType="Add" clicked={() => this.handleSubmit()}>Submit Recipe</Button>
+
       </div>
     );
   }

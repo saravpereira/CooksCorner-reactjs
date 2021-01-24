@@ -1,5 +1,4 @@
 import React from "react";
-import Aux from "../../hoc/Aux/Aux";
 import classes from './EmptyPage.module.css'
 
 const emptyPage = (props) => {

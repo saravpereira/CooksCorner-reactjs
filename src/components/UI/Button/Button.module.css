@@ -1,0 +1,15 @@
+.Add, .Submit {
+    margin: 5px 0;
+    padding: 10px;
+    font: inherit;
+    border: 1px solid #fa923f;
+    background-color: transparent;
+    color: #fa923f;
+    cursor: pointer;
+}
+
+.Add button:hover,
+.Submit button:hover {
+    color: white;
+    background-color: #fa923f;
+}

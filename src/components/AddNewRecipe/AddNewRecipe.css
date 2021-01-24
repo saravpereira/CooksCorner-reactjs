@@ -29,7 +29,7 @@
     box-sizing: border-box;
 }
 
-.Add, .Submit {
+.Add {
     margin: 5px 0;
     padding: 10px;
     font: inherit;
