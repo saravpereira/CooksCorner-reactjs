@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Aux from "../../hoc/Aux/Aux";
 import key from "../../data/key";
-import DeleteRecipe from "../ModifyRecipe/DeleteRecipe/DeleteRecipe"
+import DeleteButton from "../UI/Button/DeleteButton/DeleteButton";
+import EditButton from "../UI/Button/EditButton/EditButton"
 import classes from "./FullPost.module.css";
 
 class FullPost extends Component {
@@ -30,8 +31,8 @@ class FullPost extends Component {
             );
           })}
         </ol>
-        <DeleteRecipe handleDeletePost={this.props.handleDeletePost}/>
-        <button onClick={() => this.props.handleEditRecipe()}>Edit Recipe</button>
+        <DeleteButton handleDeletePost={this.props.handleDeletePost}/>
+        <EditButton handleEdit={() => this.props.handleEditRecipe()}/>
       </Aux>
     );
   }

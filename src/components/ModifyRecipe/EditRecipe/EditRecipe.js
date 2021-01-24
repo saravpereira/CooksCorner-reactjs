@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import "../../AddNewRecipe/AddNewRecipe.css";
+import classes from "../../RecipeFormInputs/RecipeFormInputs.module.css"
 import RecipeName from "../../RecipeFormInputs/RecipeName/RecipeName";
 import Steps from "../../RecipeFormInputs/Steps/Steps";
 import Ingredients from "../../RecipeFormInputs/Ingredients/Ingredients";
 import ImageUrl from "../../RecipeFormInputs/ImageUrl/ImageUrl";
-import Button from "../../UI/Button/Button"
+import Description from "../../RecipeFormInputs/Description/Description";
+import Button from "../../UI/Button/Button";
 
 class EditRecipe extends Component {
   state = {
     ingredientInputs: [...this.props.viewingRecipe.ingredients],
     stepInputs: [...this.props.viewingRecipe.steps],
     name: this.props.viewingRecipe.name,
+    description: this.props.viewingRecipe.description,
     ingredients: [...this.props.viewingRecipe.ingredients],
     steps: [...this.props.viewingRecipe.steps],
     imageURL: this.props.viewingRecipe.imageURL,
@@ -70,9 +72,14 @@ class EditRecipe extends Component {
     this.setState({ imageURL: event.target.value });
   }
 
+  handleRecipeDescriptionChange(event) {
+    this.setState({ description: event.target.value });
+  }
+
   handleUpdate() {
     this.props.updatePost({
       name: this.state.name,
+      description: this.state.description,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
       imageURL: this.state.imageURL,
@@ -82,10 +89,17 @@ class EditRecipe extends Component {
 
   render() {
     return (
-      <div className="NewRecipe">
+      <div className={classes.Recipe}>
         <RecipeName
           handleRecipeNameChange={(event) => this.handleRecipeNameChange(event)}
           recipeName={this.state.name}
+        />
+
+        <Description
+          handleRecipeDescriptionChange={(event) =>
+            this.handleRecipeDescriptionChange(event)
+          }
+          recipeDescription={this.state.description}
         />
 
         <Ingredients
@@ -111,7 +125,9 @@ class EditRecipe extends Component {
           handleImageUrlChange={(event) => this.handleImageUrlChange(event)}
         />
 
-        <Button btnType="Submit" clicked={() => this.handleUpdate()}>Update Recipe</Button>
+        <Button btnType="Submit" clicked={() => this.handleUpdate()}>
+          Update Recipe
+        </Button>
       </div>
     );
   }

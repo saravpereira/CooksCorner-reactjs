@@ -1,4 +1,5 @@
 import React from "react";
+import classes from "../RecipeFormInputs.module.css"
 
 const recipeName = (props) => {
   return (
@@ -6,7 +7,7 @@ const recipeName = (props) => {
       <h1>Add a New Recipe</h1>
       <label>Recipe Name</label>
       <input
-        className="RecipeName"
+        className={classes.RecipeName}
         type="text"
         value={props.recipeName}
         onChange={(event) => props.handleRecipeNameChange(event)}

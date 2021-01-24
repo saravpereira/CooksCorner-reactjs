@@ -1,5 +1,4 @@
-.NewRecipe {
-    /* width: 150%; */
+.Recipe {
     margin: auto;
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
@@ -11,7 +10,7 @@
 
 }
 
-.NewRecipe label {
+.Recipe label {
     display: block;
     margin: 10px auto;
     text-align: center;
@@ -39,8 +38,25 @@
     cursor: pointer;
 }
 
-.NewRecipe button:hover,
-.NewRecipe button:active {
+.Recipe button:hover,
+.Recipe button:active {
     color: white;
     background-color: #fa923f;
+}
+
+textarea {
+    width: 100%;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.Ingredient {
+    width: 58.5%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 10px 10px;
 }

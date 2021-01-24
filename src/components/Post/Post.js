@@ -18,9 +18,7 @@ const post = (props) => {
             <div className="content">
               <h2>{props.name}</h2>
               <p>
-                Sed egestas, ante et vulputate volutpat, eros pede semper est,
-                vitae luctus metus libero eu augue. Morbi purus libero, faucibus
-                adipiscing, commodo quis, gravida id, est.
+                {props.description}
               </p>
               <button className="button alt" onClick={handleClicks}>
                 More

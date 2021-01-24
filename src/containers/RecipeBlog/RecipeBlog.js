@@ -116,6 +116,7 @@ class RecipeBlog extends Component {
             key={i}
             name={post.name}
             imageURL={post.imageURL}
+            description={post.description}
             readMore={this.showPostHandler}
             postID={() => this.postSelectedHandler(post.id)}
           />

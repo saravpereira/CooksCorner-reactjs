@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import "./AddNewRecipe.css";
+import classes from "../RecipeFormInputs/RecipeFormInputs.module.css"
 import RecipeName from "../RecipeFormInputs/RecipeName/RecipeName";
 import Ingredients from "../RecipeFormInputs/Ingredients/Ingredients";
 import Steps from "../RecipeFormInputs/Steps/Steps";
 import ImageUrl from "../RecipeFormInputs/ImageUrl/ImageUrl";
+import Description from "../RecipeFormInputs/Description/Description"
 import Button from "../UI/Button/Button";
 
 class AddNewRecipe extends Component {
@@ -11,6 +12,7 @@ class AddNewRecipe extends Component {
     ingredientInputs: ["ingredientInputs-0"],
     stepInputs: ["stepInputs-0"],
     name: "",
+    description: "",
     ingredients: [],
     steps: [],
     imageURL: "",
@@ -50,6 +52,10 @@ class AddNewRecipe extends Component {
     this.setState({ imageURL: event.target.value });
   }
 
+  handleRecipeDescriptionChange(event) {
+    this.setState({ description: event.target.value });
+  }
+
   removeIngredient(i) {
     let ingredients = [...this.state.ingredients];
     ingredients.splice(i, 1);
@@ -73,6 +79,7 @@ class AddNewRecipe extends Component {
   handleSubmit() {
     this.props.addPost({
       name: this.state.name,
+      description: this.state.description,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
       imageURL: this.state.imageURL,
@@ -82,10 +89,15 @@ class AddNewRecipe extends Component {
 
   render() {
     return (
-      <div className="NewRecipe">
+      <div className={classes.Recipe}>
         <RecipeName
           handleRecipeNameChange={(event) => this.handleRecipeNameChange(event)}
           recipeName={this.state.name}
+        />
+
+        <Description 
+          handleRecipeDescriptionChange={(event) => this.handleRecipeDescriptionChange(event)}
+          recipeDescription={this.state.description}
         />
 
         <Ingredients

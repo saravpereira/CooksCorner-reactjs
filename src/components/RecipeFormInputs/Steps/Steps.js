@@ -1,6 +1,6 @@
 import React from "react";
 import key from "../../../data/key"
-import "./Steps.css"
+import classes from "../RecipeFormInputs.module.css"
 
 const steps = (props) => {
   return (
@@ -21,7 +21,7 @@ const steps = (props) => {
             </section>
           );
         })}
-        <button className="Add" onClick={() => props.appendStepInput()}>Add Step</button>
+        <button className={classes.Add} onClick={() => props.appendStepInput()}>Add Step</button>
     </React.Fragment>
   );
 };

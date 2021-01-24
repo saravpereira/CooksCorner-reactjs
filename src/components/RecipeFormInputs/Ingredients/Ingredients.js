@@ -1,6 +1,6 @@
 import React from "react";
 import key from "../../../data/key";
-import "./Ingredients.css";
+import classes from "../RecipeFormInputs.module.css"
 
 const ingredients = (props) => {
   return (
@@ -10,7 +10,7 @@ const ingredients = (props) => {
         return (
           <section key={i}>
             <input
-              className="Ingredient"
+              className={classes.Ingredient}
               key={i}
               type="text"
               size="20"
@@ -27,7 +27,7 @@ const ingredients = (props) => {
           </section>
         );
       })}
-      <button className="Add" onClick={() => props.appendIngredientInput()}>
+      <button className={classes.Add} onClick={() => props.appendIngredientInput()}>
         Add Ingredient
       </button>
     </React.Fragment>
