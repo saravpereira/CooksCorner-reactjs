@@ -1,11 +1,10 @@
 import React from "react";
 import key from "../../../data/key"
-import Aux from "../../../hoc/Aux/Aux";
 import "./Steps.css"
 
 const steps = (props) => {
   return (
-    <Aux>
+    <React.Fragment>
       <label>Steps</label>
         {props.stepInputs.map((input, i) => {
           return (
@@ -23,7 +22,7 @@ const steps = (props) => {
           );
         })}
         <button className="Add" onClick={() => props.appendStepInput()}>Add Step</button>
-    </Aux>
+    </React.Fragment>
   );
 };
 

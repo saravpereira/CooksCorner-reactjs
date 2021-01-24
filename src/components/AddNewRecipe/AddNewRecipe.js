@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./AddNewRecipe.css";
-import RecipeName from "./RecipeName/RecipeName";
-import Ingredients from "./Ingredients/Ingredients";
-import Steps from "./Steps/Steps";
-import ImageUrl from "./ImageUrl/ImageUrl";
-import Button from "../UI/Button/Button"
+import RecipeName from "../RecipeFormInputs/RecipeName/RecipeName";
+import Ingredients from "../RecipeFormInputs/Ingredients/Ingredients";
+import Steps from "../RecipeFormInputs/Steps/Steps";
+import ImageUrl from "../RecipeFormInputs/ImageUrl/ImageUrl";
+import Button from "../UI/Button/Button";
 
 class AddNewRecipe extends Component {
   state = {
@@ -111,8 +111,9 @@ class AddNewRecipe extends Component {
           handleImageUrlChange={(event) => this.handleImageUrlChange(event)}
         />
 
-        <Button btnType="Add" clicked={() => this.handleSubmit()}>Submit Recipe</Button>
-
+        <Button btnType="Add" clicked={() => this.handleSubmit()}>
+          Submit Recipe
+        </Button>
       </div>
     );
   }

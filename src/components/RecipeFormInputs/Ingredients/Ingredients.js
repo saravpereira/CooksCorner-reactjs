@@ -1,11 +1,10 @@
 import React from "react";
-import Aux from "../../../hoc/Aux/Aux";
 import key from "../../../data/key";
 import "./Ingredients.css";
 
 const ingredients = (props) => {
   return (
-    <Aux>
+    <React.Fragment>
       <label>Ingredients</label>
       {props.ingredientInputs.map((input, i) => {
         return (
@@ -31,7 +30,7 @@ const ingredients = (props) => {
       <button className="Add" onClick={() => props.appendIngredientInput()}>
         Add Ingredient
       </button>
-    </Aux>
+    </React.Fragment>
   );
 };
 

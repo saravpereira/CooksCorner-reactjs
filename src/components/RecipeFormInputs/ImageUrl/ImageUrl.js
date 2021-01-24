@@ -1,9 +1,8 @@
 import React from "react";
-import Aux from "../../../hoc/Aux/Aux";
 
 const imageUrl = (props) => {
   return (
-    <Aux>
+    <React.Fragment>
         <label>Image URL</label>
         <input
           className="Image"
@@ -11,7 +10,7 @@ const imageUrl = (props) => {
           value={props.imageURL}
           onChange={(event) => props.handleImageUrlChange(event)}
         />
-    </Aux>
+    </React.Fragment>
   );
 };
 

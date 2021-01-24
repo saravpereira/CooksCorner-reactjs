@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "../../AddNewRecipe/AddNewRecipe.css";
-import RecipeName from "../../AddNewRecipe/RecipeName/RecipeName";
-import Steps from "../../AddNewRecipe/Steps/Steps";
-import Ingredients from "../../AddNewRecipe/Ingredients/Ingredients";
-import ImageUrl from "../../AddNewRecipe/ImageUrl/ImageUrl";
+import RecipeName from "../../RecipeFormInputs/RecipeName/RecipeName";
+import Steps from "../../RecipeFormInputs/Steps/Steps";
+import Ingredients from "../../RecipeFormInputs/Ingredients/Ingredients";
+import ImageUrl from "../../RecipeFormInputs/ImageUrl/ImageUrl";
 import Button from "../../UI/Button/Button"
 
 class EditRecipe extends Component {
@@ -83,7 +83,6 @@ class EditRecipe extends Component {
   render() {
     return (
       <div className="NewRecipe">
-        {console.log(this.state)}
         <RecipeName
           handleRecipeNameChange={(event) => this.handleRecipeNameChange(event)}
           recipeName={this.state.name}
