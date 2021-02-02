@@ -1,17 +1,24 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux';
 import "./Modal.css"
 import Backdrop from '../Backdrop/Backdrop'
+import * as actions from "../../../store/actions/index"
 
 class Modal extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.show !== this.props.show || nextProps.children !== this.props.children
+    }
+    handleCloseDialog(){
+        this.props.onClosePostDialog()
+        this.props.onCloseEditDialog()
+        
     }
     render() {
         return(
             <React.Fragment>
                 <Backdrop 
                     show={this.props.show}
-                    clicked = {this.props.modalClosed}
+                    clicked = {() => this.handleCloseDialog()}
                     />
             <div className="Modal"
             style={{
@@ -24,4 +31,12 @@ class Modal extends Component {
     }
 }
 
-export default Modal
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onClosePostDialog: () => dispatch(actions.closePostDialog()),
+        onCloseEditDialog: () => dispatch(actions.closeEditDialog()),
+  }
+  }
+
+export default connect(null, mapDispatchToProps)(Modal)

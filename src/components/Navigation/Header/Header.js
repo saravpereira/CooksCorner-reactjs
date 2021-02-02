@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import classes from "./Header.module.css";
 import Logo from "../Logo/Logo"
+import * as actions from "../../../store/actions/index"
 
 class Header extends Component {
   render() {
@@ -15,13 +17,13 @@ class Header extends Component {
               className={classes.search}
               type="search"
               placeholder="Search Recipe"
-              onChange={(e) => this.props.searchSpace(e)}
+              onChange={(e) => this.props.onKeywordSearch(e)}
             />
           </form>
           <button
               className={classes.btn}
               type="button"
-              onClick={this.props.addNewRecipe}
+              onClick={this.props.onAddNewRecipe}
             >
               <span className={classes.circle}>
                 <span className={`${classes.icon} ${classes.arrow}`}></span>
@@ -36,4 +38,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = dispatch => {
+  return {
+      onAddNewRecipe: () => dispatch(actions.addNewRecipe()),
+      onKeywordSearch: (event) => dispatch(actions.keywordSearch(event)),
+}
+}
+
+
+export default connect(null, mapDispatchToProps)(Header);
